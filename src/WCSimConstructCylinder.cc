@@ -139,10 +139,10 @@ G4LogicalVolume* WCSimDetectorConstruction::ConstructCylinder()
  
  
    G4VisAttributes* showColor = new G4VisAttributes(G4Colour(0.0,1.0,0.0));
-   logicWC->SetVisAttributes(showColor);
+   //logicWC->SetVisAttributes(showColor);
 
    logicWC->SetVisAttributes(G4VisAttributes::Invisible); //amb79
-  
+
   //-----------------------------------------------------
   // everything else is contained in this water tubs
   //-----------------------------------------------------
@@ -175,10 +175,108 @@ G4LogicalVolume* WCSimDetectorConstruction::ConstructCylinder()
   else
    {//{if(!debugMode)
 		 G4VisAttributes* tmpVisAtt = new G4VisAttributes(G4VisAttributes::Invisible);
-		 // G4VisAttributes* tmpVisAtt = new G4VisAttributes(cyan);
-		 tmpVisAtt->SetForceWireframe(true);// This line is used to give definition to the rings in OGLSX Visualizer
+	     //G4VisAttributes* tmpVisAtt = new G4VisAttributes(cyan);
+		 //tmpVisAtt->SetForceWireframe(true);// This line is used to give definition to the rings in OGLSX Visualizer
 		 logicWCBarrel->SetVisAttributes(tmpVisAtt);
    }
+
+  //-----------------------------------------------------
+  // Cylinder wall's tyvek
+  //-----------------------------------------------------
+
+  G4Tubs* solidCaveTyvek = new G4Tubs("WC",
+                                      WCRadius,
+                                      WCRadius+CaveTyvekSheetThickness,
+                                      .5*WCLength,	//jl145 - per blueprint
+                                      0.*deg,
+                                      360.*deg);
+
+  G4LogicalVolume* logicCaveTyvek =
+      new G4LogicalVolume(solidCaveTyvek,
+                          G4Material::GetMaterial("Tyvek"),
+                          "CaveTyvek",
+                          0,0,0);
+
+  G4VPhysicalVolume* physiCaveTyvek =
+      new G4PVPlacement(0,
+                        G4ThreeVector(0.,0.,0.),
+                        logicCaveTyvek,
+                        "WCBarrel",
+                        logicWC,
+                        false,
+                        0);
+
+  G4VisAttributes* showTyvekCave = new G4VisAttributes(green);
+  showTyvekCave->SetForceWireframe(true);// This line is used to give definition to the rings in OGLSX Visualizer
+  logicCaveTyvek->SetVisAttributes(showTyvekCave);
+  //logicCaveTyvek->SetVisAttributes(G4VisAttributes::Invisible); //amb79
+
+  //-----------------------------------------------------
+  // Cylinder caps' tyvek
+  //-----------------------------------------------------
+
+  G4Tubs* solidCaveCapsTyvek = new G4Tubs("CaveCapsTyvek",
+                                          0,
+                                          WCRadius,
+                                          .5*(CaveTyvekSheetThickness),
+                                          0.*deg,
+                                          360.*deg);
+
+  G4LogicalVolume* logicTopCaveTyvek =
+      new G4LogicalVolume(solidCaveCapsTyvek,
+                          G4Material::GetMaterial("Tyvek"),
+                          "TopCaveTyvek",
+                          0,0,0);
+  G4LogicalVolume* logicBottomCaveTyvek =
+      new G4LogicalVolume(solidCaveCapsTyvek,
+                          G4Material::GetMaterial("Tyvek"),
+                          "BottomCaveTyvek",
+                          0,0,0);
+
+  G4VisAttributes* CapsCaveTyvekVisAtt = new G4VisAttributes(yellow);
+  CapsCaveTyvekVisAtt->SetForceWireframe(true);
+  logicTopCaveTyvek->SetVisAttributes(CapsCaveTyvekVisAtt);
+  logicBottomCaveTyvek->SetVisAttributes(CapsCaveTyvekVisAtt);
+  //logicTopCaveTyvek->SetVisAttributes(G4VisAttributes::Invisible); //amb79
+  //logicBottomCaveTyvek->SetVisAttributes(G4VisAttributes::Invisible); //amb79
+
+  G4ThreeVector CaveTyvekPosition(0.,0.,WCLength/2);
+
+  G4VPhysicalVolume* physiTopCaveTyvek =
+      new G4PVPlacement(0,
+                        CaveTyvekPosition,
+                        logicTopCaveTyvek,
+                        "CaveTopTyvek",
+                        logicWC,
+                        false,
+                        0);
+
+  G4LogicalBorderSurface * WaterTyTopCaveSurfaceBot =
+      new G4LogicalBorderSurface(	"WaterTyCaveTopSurface",
+                                     physiWCBarrel,
+                                     physiTopCaveTyvek,
+                                     OpWaterTySurface);
+
+  CaveTyvekPosition.setZ(-CaveTyvekPosition.getZ());
+
+  G4VPhysicalVolume* physiBottomCaveTyvek =
+      new G4PVPlacement(0,
+                        CaveTyvekPosition,
+                        logicBottomCaveTyvek,
+                        "CaveBottomTyvek",
+                        logicWC,
+                        false,
+                        0);
+
+  G4LogicalBorderSurface * WaterTyBottomCaveSurfaceBot =
+      new G4LogicalBorderSurface(	"WaterTyCaveTopSurface",
+                                     physiWCBarrel,
+                                     physiBottomCaveTyvek,
+                                     OpWaterTySurface);
+
+
+  //-----------------------------------------------------
+
   //-----------------------------------------------------
   // Form annular section of barrel to hold PMTs 
   //----------------------------------------------------
@@ -829,7 +927,7 @@ If used here, uncomment the SetVisAttributes(WClogic) line, and comment out the 
 									"WCODTopCapTyvek",
 									0,0,0);
 
-		G4LogicalVolume* logicWCODBottomCapTyvek =
+        G4LogicalVolume* logicWCODBottomCapTyvek =
 				new G4LogicalVolume(solidWCODCapsTyvek,
 									G4Material::GetMaterial("Tyvek"),
 									"WCODBottomCapTyvek",
@@ -845,7 +943,7 @@ If used here, uncomment the SetVisAttributes(WClogic) line, and comment out the 
         logicWCODTopCapTyvek->SetVisAttributes(WCCapsODTyvekCellVisAtt);
         logicWCODBottomCapTyvek->SetVisAttributes(WCCapsODTyvekCellVisAtt);
 
-		G4ThreeVector CapTyvekPosition(0.,0.,(WCIDHeight + 2*WCODDeadSpace)/2);
+        G4ThreeVector CapTyvekPosition(0.,0.,(WCIDHeight + 2*WCODDeadSpace)/2);
 
 		G4VPhysicalVolume* physiWCODTopCapsTyvek =
 				new G4PVPlacement(0,
@@ -879,8 +977,7 @@ If used here, uncomment the SetVisAttributes(WClogic) line, and comment out the 
 											   physiWCODBottomCapsTyvek,
 											   OpWaterTySurface);
 
-
-		//-------------------------------------------------------------
+        //-------------------------------------------------------------
 		// OD Tyvek Barrel side
 		// ------------------------------------------------------------
 

@@ -328,6 +328,16 @@ public:
   G4double WCCapEdgeLimit;
   G4double WCBlackSheetThickness;
 
+  // ################### //
+  // # Cave parameters # //
+  // ################### //
+
+  G4double CaveTyvekSheetThickness;
+
+  // ############################### //
+  // # *** END Cave Parameters *** # //
+  // ############################### //
+
   // ############################# //
   // # Outer Detector parameters # //
   // ############################# //
