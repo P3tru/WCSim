@@ -71,6 +71,7 @@ public:
   void Cylinder_60x74_20inchBandL_40perCent();
   void Cylinder_12inchHPD_15perCent();
   void SetHyperKGeometry();
+  void UpdateODGeo();
   void UpdateGeometry();
   
 
@@ -173,7 +174,8 @@ public:
   void SetWCPMTODperCellVertical(G4double val){WCPMTODperCellVertical = val;}
   void SetWCPMTODPercentCoverage(G4double val){WCPMTODPercentCoverage = val;}
   void SetWCODPMTShift(G4double val){WCODPMTShift = val;}
-
+  void SetODEdited(G4bool val){odEdited = val;}
+  G4bool GetODEdited(){return odEdited;}
   ////////// END OD /////////////
   ///////////////////////////////
 
@@ -437,6 +439,7 @@ public:
     G4double outerPMT_TopRpitch;
     G4double outerPMT_BotRpitch;
     G4double outerPMT_Apitch;
+    G4bool odEdited;
 
     G4double blackSheetThickness;
 
