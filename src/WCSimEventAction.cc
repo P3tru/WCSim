@@ -160,10 +160,6 @@ void WCSimEventAction::CreateDAQInstances()
     WCSimWCTriggerNoTrigger* WCTM = new WCSimWCTriggerNoTrigger("WCReadout_OD", detectorConstructor, DAQMessenger, "OD");
     DMman->AddNewModule(WCTM);
   }
-  else if(TriggerChoice == "NoTrigger") {
-    WCSimWCTriggerNoTrigger* WCTM = new WCSimWCTriggerNoTrigger("WCReadout", detectorConstructor, DAQMessenger);
-    DMman->AddNewModule(WCTM);
-  }
   else {
     G4cerr << "Unknown TriggerChoice " << TriggerChoice << G4endl;
     exit(-1);

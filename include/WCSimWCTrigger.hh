@@ -331,21 +331,6 @@ private:
   int  GetDefaultNDigitsPostTriggerWindow() { return 950;   } ///< SK SLE trigger window ~+950
 };
 
-class WCSimWCTriggerNoTrigger : public WCSimWCTriggerBase
-{
-public:
-  
-  ///Create WCSimWCTriggerNoTrigger instance with knowledge of the detector and DAQ options
-  WCSimWCTriggerNoTrigger(G4String name, WCSimDetectorConstruction*, WCSimWCDAQMessenger*);
-  
-  ~WCSimWCTriggerNoTrigger();
-  
-private:
-  ///Calls the workhorse of this class: AlgNoTrigger
-  void DoTheWork(WCSimWCDigitsCollection* WCDCPMT);
-  
-};
-
 /**
  * \class WCSimWCTriggerNDigits2
  *

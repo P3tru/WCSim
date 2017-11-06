@@ -618,31 +618,6 @@ void WCSimWCTriggerNDigits::DoTheWork(WCSimWCDigitsCollection *WCDCPMT) {
   AlgNDigits(WCDCPMT, remove_hits);
 }
 
-// *******************************************
-// DERIVED CLASS
-// *******************************************
-
-
-WCSimWCTriggerNoTrigger::WCSimWCTriggerNoTrigger(G4String name,
-					 WCSimDetectorConstruction* myDetector,
-					 WCSimWCDAQMessenger* myMessenger)
-  :WCSimWCTriggerBase(name, myDetector, myMessenger)
-{
-  triggerClassName = "NoTrigger";
-}
-
-WCSimWCTriggerNoTrigger::~WCSimWCTriggerNoTrigger()
-{
-}
-
-void WCSimWCTriggerNoTrigger::DoTheWork(WCSimWCDigitsCollection* WCDCPMT) {
-  //Apply an NDigits trigger
-  bool remove_hits = false;
-  SetMultiDigitsPerTrigger(true);
-  SetSaveFailuresMode(0);
-  AlgNoTrigger(WCDCPMT, remove_hits);
-}
-
 
 // *******************************************
 // DERIVED CLASS
