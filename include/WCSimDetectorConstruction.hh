@@ -170,6 +170,7 @@ public:
   void SetWCODDeadSpace(G4double val){WCODDeadSpace = val;}
   void SetWCODTyvekSheetThickness(G4double val){WCODTyvekSheetThickness = val;}
   void SetWCODWLSPlatesThickness(G4double val){WCODWLSPlatesThickness = val;}
+  void SetWCODWLSPlatesLength(G4double val){WCODWLSPlatesLength = val;}
   void SetWCPMTODperCellHorizontal(G4double val){WCPMTODperCellHorizontal = val;}
   void SetWCPMTODperCellVertical(G4double val){WCPMTODperCellVertical = val;}
   void SetWCPMTODPercentCoverage(G4double val){WCPMTODPercentCoverage = val;}
@@ -354,6 +355,7 @@ public:
   G4double WCODDeadSpace;
   G4double WCODTyvekSheetThickness;
   G4double WCODWLSPlatesThickness;
+  G4double WCODWLSPlatesLength;
 
   G4double WCODCapPMTSpacing;
   G4double WCODCapEdgeLimit;

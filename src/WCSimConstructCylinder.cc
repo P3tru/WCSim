@@ -1033,8 +1033,8 @@ If used here, uncomment the SetVisAttributes(WClogic) line, and comment out the 
         G4Box *solidWCBarrelCellODWLSPlate =
 				new G4Box("WCBarrelCellODWLS",
                           WCODWLSPlatesThickness/2,
-						  WCPMTODRadius*3,
-						  WCPMTODRadius*3);
+						  WCODWLSPlatesLength/2,
+						  WCODWLSPlatesLength/2);
 
 
 		logicWCBarrelCellODWLSPlate =

@@ -165,6 +165,15 @@ WCSimDetectorMessenger::WCSimDetectorMessenger(WCSimDetectorConstruction* WCSimD
   ODWLSPlatesThickness->SetDefaultUnit("cm");
   ODWLSPlatesThickness->SetUnitCandidates("cm mm");
 
+  // OD WLS Plates length
+  ODWLSPlatesLength = new G4UIcmdWithADoubleAndUnit("/WCSim/HyperKOD/ODWLSPlatesLength", this);
+  ODWLSPlatesLength->SetGuidance("Set OD WLS plates length (unit: cm mm).");
+  ODWLSPlatesLength->SetParameterName("ODWLSPlatesLength", true);
+  ODWLSPlatesLength->SetDefaultValue(60.);
+  ODWLSPlatesLength->SetUnitCategory("Length");
+  ODWLSPlatesLength->SetDefaultUnit("cm");
+  ODWLSPlatesLength->SetUnitCandidates("cm mm");
+
   // Nb of OD PMT per cell HORIZONTALLY
   PMTODperCellHorizontal = new G4UIcmdWithAnInteger("/WCSim/HyperKOD/PMTODperCellHorizontal", this);
   PMTODperCellHorizontal->SetGuidance("Set number of OD PMT per cell HORIZONTALLY (unit: cm mm).");
@@ -373,6 +382,12 @@ void WCSimDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newValue)
 	WCSimDetector->SetODEdited(true);
       G4cout << "Set OD WLS plates thickness " << newValue << " " << G4endl;
       WCSimDetector->SetWCODWLSPlatesThickness(ODWLSPlatesThickness->GetNewDoubleValue(newValue));
+    }
+
+    if(command == ODWLSPlatesLength){
+	WCSimDetector->SetODEdited(true);
+      G4cout << "Set OD WLS plates length " << newValue << " " << G4endl;
+      WCSimDetector->SetWCODWLSPlatesLength(ODWLSPlatesLength->GetNewDoubleValue(newValue));
     }
 
     if(command == PMTODperCellHorizontal){

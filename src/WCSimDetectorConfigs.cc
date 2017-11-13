@@ -249,6 +249,7 @@ void WCSimDetectorConstruction::SetHyperKGeometry()
   WCODDeadSpace            = 600.*mm;
   WCODTyvekSheetThickness  = 2.*mm; // Au pif
   WCODWLSPlatesThickness   = 1.*cm; //
+  WCODWLSPlatesLength   = 60.*cm; //
   WCODDiameter             = WCIDDiameter + 2*(WCBlackSheetThickness+WCODDeadSpace+WCODTyvekSheetThickness+WCODWLSPlatesThickness);
 
   // OD PMTs //
