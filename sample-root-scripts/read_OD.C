@@ -13,6 +13,8 @@ void read_OD(char *filename=NULL) {
   wcsimdirenv = getenv ("WCSIMDIR");
   if(wcsimdirenv !=  NULL){
     gSystem->Load("${WCSIMDIR}/libWCSimRoot.so");
+    gSystem->Load("${WCSIMDIR}/libWCSimRoot.rootmap");
+    gSystem->Load("${WCSIMDIR}/src/WCSimRootDict_rdict.pcm");
   }else{
     std::cout << "Can't load WCSim ROOT dictionaries" << std::endl;
   }
@@ -39,14 +41,14 @@ void read_OD(char *filename=NULL) {
     else cout << "File open bro: " << filename << endl;
   }
 
-  TTree  *wcsimT = f->Get("wcsimT");
+  TTree  *wcsimT = (TTree*)f->Get("wcsimT");
 
   WCSimRootEvent *wcsimrootsuperevent = new WCSimRootEvent();
   wcsimT->SetBranchAddress("wcsimrootevent_OD",&wcsimrootsuperevent);
 
   // Force deletion to prevent memory leak when issuing multiple
   // calls to GetEvent()
-  wcsimT->GetBranch("wcsimrootevent_OD")->SetAutoDelete(kTRUE);
+  //wcsimT->GetBranch("wcsimrootevent_OD")->SetAutoDelete(kTRUE);
 
   // const long unsigned int nbEntries = wcsimT->GetEntries();
   const long unsigned int nbEntries = 100;
@@ -103,7 +105,7 @@ void read_OD(char *filename=NULL) {
       int rawMax = wcsimrootevent->GetNcherenkovhits();
       int totRawPE = 0;
       for (int i = 0; i < rawMax; i++){
-	WCSimRootCherenkovHit *chit = wcsimrootevent->GetCherenkovHits()->At(i);
+	WCSimRootCherenkovHit *chit = (WCSimRootCherenkovHit*)wcsimrootevent->GetCherenkovHits()->At(i);
 	
 	hPEByEvtsByPMT->Fill(chit->GetTotalPe(1));
 	totRawPE+=chit->GetTotalPe(1);
@@ -116,9 +118,11 @@ void read_OD(char *filename=NULL) {
       int digiMax = wcsimrootevent->GetNcherenkovdigihits();
       int totDigiPE = 0;
       for (int i = 0; i < digiMax; i++){
-	WCSimRootCherenkovDigiHit *cDigiHit = wcsimrootevent->GetCherenkovDigiHits()->At(i);
+	WCSimRootCherenkovDigiHit *cDigiHit =
+	  (WCSimRootCherenkovDigiHit*)wcsimrootevent->GetCherenkovDigiHits()->At(i);
 	//WCSimRootChernkovDigiHit has methods GetTubeId(), GetT(), GetQ()
-	WCSimRootCherenkovHitTime *cHitTime = wcsimrootevent->GetCherenkovHitTimes()->At(i);
+	WCSimRootCherenkovHitTime *cHitTime =
+	  (WCSimRootCherenkovHitTime*)wcsimrootevent->GetCherenkovHitTimes()->At(i);
 	//WCSimRootCherenkovHitTime has methods GetTubeId(), GetTruetime()
 
 	hPECollectedByEvtsByPMT->Fill(cDigiHit->GetQ());

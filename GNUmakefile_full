@@ -70,6 +70,9 @@ libWCSim.a : $(ROOTOBJS)
 
 rootcint: ./src/WCSimRootDict.cc
 
+rootcling:
+	rootcling  -f ./src/WCSimRootDict.cc -rml libWCSimRoot.so -I./include -I/home/zsoldos/.local/root-6.10.02-build/include WCSimRootEvent.hh WCSimRootGeom.hh  WCSimPmtInfo.hh WCSimEnumerations.hh WCSimRootOptions.hh WCSimRootLinkDef.hh
+
 doxy:
 	@if [ ${DOXYGEN_EXISTS} = 1 ]; \
 	then \

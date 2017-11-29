@@ -1,0 +1,20 @@
+[ libWCSimRoot.so ]
+# List of selected classes
+class WCSimEnumerations
+class WCSimPmtInfo
+class WCSimRootCherenkovDigiHit
+class WCSimRootCherenkovHit
+class WCSimRootCherenkovHitTime
+class WCSimRootEvent
+class WCSimRootEventHeader
+class WCSimRootGeom
+class WCSimRootOptions
+class WCSimRootPMT
+class WCSimRootPi0
+class WCSimRootTrack
+class WCSimRootTrigger
+header WCSimEnumerations.hh
+header WCSimPmtInfo.hh
+header WCSimRootEvent.hh
+header WCSimRootGeom.hh
+header WCSimRootOptions.hh
