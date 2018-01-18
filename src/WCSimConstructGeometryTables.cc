@@ -229,13 +229,13 @@ void WCSimDetectorConstruction::DumpGeometryTableToFile()
     
     geoFile.precision(9);
      geoFile << setw(4) << tubeID 
- 	    << " " << setw(8) << newTransform.getTranslation().getX()/cm
- 	    << " " << setw(8) << newTransform.getTranslation().getY()/cm
- 	    << " " << setw(8) << newTransform.getTranslation().getZ()/cm
-	    << " " << setw(7) << pmtOrientation.x()
-	    << " " << setw(7) << pmtOrientation.y()
-	    << " " << setw(7) << pmtOrientation.z()
- 	    << " " << setw(3) << cylLocation
+ 	    << "," << setw(8) << newTransform.getTranslation().getX()/cm
+ 	    << "," << setw(8) << newTransform.getTranslation().getY()/cm
+ 	    << "," << setw(8) << newTransform.getTranslation().getZ()/cm
+	    << "," << setw(7) << pmtOrientation.x()
+	    << "," << setw(7) << pmtOrientation.y()
+	    << "," << setw(7) << pmtOrientation.z()
+ 	    << "," << setw(1) << cylLocation
  	    << G4endl;
      
      WCSimPmtInfo *new_pmt = new WCSimPmtInfo(cylLocation,
@@ -278,13 +278,13 @@ void WCSimDetectorConstruction::DumpGeometryTableToFile()
 
     geoFile.precision(9);
     geoFile << setw(4) << tubeID
-            << " " << setw(8) << newTransform.getTranslation().getX()/CLHEP::cm
-            << " " << setw(8) << newTransform.getTranslation().getY()/CLHEP::cm
-            << " " << setw(8) << newTransform.getTranslation().getZ()/CLHEP::cm
-            << " " << setw(7) << pmtOrientation.x()
-            << " " << setw(7) << pmtOrientation.y()
-            << " " << setw(7) << pmtOrientation.z()
-            << " " << setw(3) << cylLocation
+            << "," << setw(8) << newTransform.getTranslation().getX()/CLHEP::cm
+            << "," << setw(8) << newTransform.getTranslation().getY()/CLHEP::cm
+            << "," << setw(8) << newTransform.getTranslation().getZ()/CLHEP::cm
+            << "," << setw(7) << pmtOrientation.x()
+            << "," << setw(7) << pmtOrientation.y()
+            << "," << setw(7) << pmtOrientation.z()
+            << "," << setw(1) << cylLocation
             << G4endl;
 
     WCSimPmtInfo *new_pmt = new WCSimPmtInfo(cylLocation,

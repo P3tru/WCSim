@@ -1,0 +1,10 @@
+//------ Read OD .root file:
+myread_OD.C 
+
+-> This creates an output file: output.txt which stores cDigiHit->GetTubeId() and cDigiHit->GetQ()
+
+//------ Visualise hits:
+
+jupyter notebook read_out_geofile.ipynb
+
+
