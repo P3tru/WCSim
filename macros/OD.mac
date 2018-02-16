@@ -14,6 +14,7 @@
 /WCSim/HyperKOD/ODDeadSpace 600 mm
 /WCSim/HyperKOD/ODTyvekSheetThickness 2 mm
 /WCSim/HyperKOD/ODWLSPlatesThickness 1 cm
+/WCSim/HyperKOD/ODWLSPlatesLength 60 cm
 /WCSim/HyperKOD/PMTODperCellHorizontal 1
 /WCSim/HyperKOD/PMTODperCellVertical 1
 /WCSim/HyperKOD/PMTODPercentCoverage 1
@@ -91,14 +92,14 @@
 #/control/execute macros/visRayTracer.mac
 
 ### Cosmic Muons generator
-#/mygen/generator cosmics
+/mygen/generator cosmics
 
 ### Particle Gun generator
-/mygen/generator gun
-/gun/particle mu-
-/gun/energy 2000 MeV
-/gun/direction 0 0 -1
-/gun/position 0 0 50 m
+#/mygen/generator gun
+#/gun/particle mu-
+#/gun/energy 2000 MeV
+#/gun/direction 0 0 -1
+#/gun/position 0 0 50 m
 
 ### GPS generator
 #/mygen/generator gps
