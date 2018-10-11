@@ -1,0 +1,47 @@
+/run/verbose 0
+/tracking/verbose 0
+/hits/verbose 0
+/WCSim/WCgeom HyperKWithOD
+/WCSim/HyperKOD/PMTODRadius 3inch
+/WCSim/HyperKOD/ODLateralWaterDepth 1 m
+/WCSim/HyperKOD/ODHeightWaterDepth 2 m
+/WCSim/HyperKOD/ODDeadSpace 600 mm
+/WCSim/HyperKOD/ODTyvekSheetThickness 2 mm
+/WCSim/HyperKOD/ODWLSPlatesThickness 1 cm
+/WCSim/HyperKOD/PMTODperCellHorizontal 1
+/WCSim/HyperKOD/PMTODperCellVertical 1
+/WCSim/HyperKOD/PMTODPercentCoverage 1
+/WCSim/HyperKOD/ODPMTShift 0 m
+/WCSim/Construct
+/WCSim/PMTQEMethod Stacking_Only
+/WCSim/PMTCollEff on
+/WCSim/SavePi0 false
+/DAQ/Digitizer SKI
+/DAQ/Trigger NoTrigger
+/control/execute macros/daq.mac
+/DarkRate/SetDetectorElement tank
+/DarkRate/SetDarkMode 1
+/DarkRate/SetDarkLow 0
+/DarkRate/SetDarkHigh 100000
+/DarkRate/SetDarkWindow 4000
+/DarkRate/SetDetectorElement OD
+/DarkRate/SetDarkMode 1
+/DarkRate/SetDarkLow 0
+/DarkRate/SetDarkHigh 100000
+/DarkRate/SetDarkWindow 4000
+/mygen/generator gps
+/gps/particle mu-
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/centre -37 0 0 m
+/gps/pos/halfx 1 m
+/gps/pos/halfy 10 m
+/gps/pos/halfz 10 m
+/gps/ene/type Gauss
+/gps/ene/mono 1 GeV
+/gps/ene/sigma 100 MeV
+/gps/ang/type iso
+/gps/ang/sigma_x 45 deg
+/WCSimIO/RootFile HKWCSim.root
+/run/beamOn 10
+exit

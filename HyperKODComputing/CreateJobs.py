@@ -1,5 +1,3 @@
-import sys
-
 def CreateJobs(mac='WCSim'):
     script = '#!/bin/sh\n'
     curdir = '/users/zsoldos/hyperk/WCSim'

@@ -1,6 +1,3 @@
-import sys
-import math
-
 ################################################################################
 ###################### Formatting the macro file ###############################
 ################################################################################
@@ -107,3 +104,5 @@ def CreateMacro(PMTODRadius=3,ODLateralWaterDepth=1,ODHeightWaterDepth=2,ODDeadS
     file = open('{0}.mac'.format(macroFileName), 'w')
     file.write(macro)
     file.close()
+
+CreateMacro()
